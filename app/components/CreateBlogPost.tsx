@@ -4,6 +4,7 @@ import axios from "axios"
 import {ToastContainer, toast} from "react-toastify"
 import "react-toastify/dist/ReactToastify.css"
 import {useNavigate} from "react-router-dom"
+import {headers} from "~/headers/headers"
 export default function CreateBlogPost(){
   const [title, setTitle] = useState("")
   const [description, setDescription] = useState("")
@@ -17,11 +18,6 @@ export default function CreateBlogPost(){
      toast?.error("Please enter your description", {position:"top-center"})
      return false
     }else{
-      let headers = {
-       "X-Parse-Application-Id":"PpK3SDzdouwf41zij4aWWg01cC4Dir1ihwhDgPwI",
-       "X-Parse-REST-API-Key":"BoxlFY1i2LuosBo0jEMtht1AgqfKKoEjZMlH22GS",
-       "Content-Type":"application/json"
-      }
       let blog = {
        title:title,
        description:description

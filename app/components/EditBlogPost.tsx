@@ -5,6 +5,7 @@ import {toast, ToastContainer} from "react-toastify"
 import "react-toastify/dist/ReactToastify.css"
 import axios from "axios"
 import Blog from "~/types/Blog.type"
+import {headers} from "~/headers/headers"
 function EditBlogPost(){
   const {objectId} = useParams()
   const [title, setTitle] = useState("")
@@ -15,11 +16,6 @@ function EditBlogPost(){
    getBlogPostById(objectId)
   },[objectId])
   const getBlogPostById = async (objectId:any) => {
-   let headers = {
-    "X-Parse-Application-Id":"PpK3SDzdouwf41zij4aWWg01cC4Dir1ihwhDgPwI",
-    "X-Parse-REST-API-Key":"BoxlFY1i2LuosBo0jEMtht1AgqfKKoEjZMlH22GS",
-    "Content-Type":"application/json"
-   }
    let editBlog = await axios.get(`https://crud.b4a.io/classes/blog/${objectId}`, {
      headers:headers
    })
@@ -37,11 +33,6 @@ function EditBlogPost(){
     toast?.error("Please enter your description", {position:"top-center"})
     return false
    }else{
-     let headers = {
-      "X-Parse-Application-Id":"PpK3SDzdouwf41zij4aWWg01cC4Dir1ihwhDgPwI",
-      "X-Parse-REST-API-Key":"BoxlFY1i2LuosBo0jEMtht1AgqfKKoEjZMlH22GS",
-      "Content-Type":"application/json"
-     }
      let blog = {
       title:title,
       description:description

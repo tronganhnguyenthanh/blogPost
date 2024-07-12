@@ -6,6 +6,8 @@ import "react-toastify/dist/ReactToastify.css"
 import {loader} from "~/fetchBlogPost/fetchBlogPost"
 import Blog from "~/types/Blog.type"
 import loading from "../../public/assets/loading.gif"
+import {headers} from "~/headers/headers"
+import moment from "moment"
 function GetListBlogPost() {
   const [blogPost, setBlogPost] = useState<(Blog | null)[]>([])
   const [isLoading, setIsLoading] = useState(true)
@@ -27,11 +29,6 @@ function GetListBlogPost() {
     navigate(`/blog/edit/${objectId}`)
   }
   const handleDelete = async (objectId:any) => {
-    let headers = {
-     "X-Parse-Application-Id":"PpK3SDzdouwf41zij4aWWg01cC4Dir1ihwhDgPwI",
-     "X-Parse-REST-API-Key":"BoxlFY1i2LuosBo0jEMtht1AgqfKKoEjZMlH22GS",
-     "Content-Type":"application/json" 
-    }
     await axios.delete(`https://crud.b4a.io/classes/blog/${objectId}`, {headers:headers})
     toast?.success("Blog post deleted successfully", {position:"top-center"})
     getBlogPost()
@@ -50,6 +47,9 @@ function GetListBlogPost() {
          blogPost?.length > 0 && blogPost?.map((i, index) => {
           return (
             <div className="border border-gray-300 p-2 hover:border-red-800" key={index}>
+              <div className="flex justify-end">
+                <span className="text-gray-400 cursor-pointer hover:text-purple-500">{moment(i?.createdAt).format("DD/MM/YYYY (hh:mm)")}</span>
+              </div>
               <h2 className="text-2xl text-center text-blue-400 cursor-pointer hover:text-purple-400">{i?.title}</h2>
               <p className="text-center text-gray-500 cursor-pointer hover:text-orange-500 truncate overflow-hidden" title={i?.description}>{i?.description}</p>
               <div className="flex justify-center">

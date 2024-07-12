@@ -5,15 +5,21 @@ import {toast, ToastContainer} from "react-toastify"
 import "react-toastify/dist/ReactToastify.css"
 import {loader} from "~/fetchBlogPost/fetchBlogPost"
 import Blog from "~/types/Blog.type"
+import loading from "../../public/assets/loading.gif"
 function GetListBlogPost() {
   const [blogPost, setBlogPost] = useState<(Blog | null)[]>([])
+  const [isLoading, setIsLoading] = useState(true)
   const navigate = useNavigate()
   useEffect(() => {
-    getBlogPost()
-  }, [])
+   getBlogPost()
+  },[])
   const getBlogPost = async () => {
     let blogPostList = await loader()
+    if(isLoading){
+     setIsLoading(!isLoading)
+    }
     setBlogPost(blogPostList)
+    console.log(isLoading)
   }
   const goBack = () => {
     navigate("/")
@@ -35,7 +41,13 @@ function GetListBlogPost() {
       <ToastContainer/>
       <h2 className="text-2xl text-center text-green-400">Blog list</h2>
       <div className="grid lg:grid-cols-4 md:grid-cols-2 sm:grid-cols-1 gap-2 p-2">
-        {blogPost?.length > 0 && blogPost?.map((i, index) => {
+        {isLoading 
+         ? 
+         <div className="flex justify-center">
+           <img src={loading} alt=""/>
+         </div>
+         : 
+         blogPost?.length > 0 && blogPost?.map((i, index) => {
           return (
             <div className="border border-gray-300 p-2 hover:border-red-800" key={index}>
               <h2 className="text-2xl text-center text-blue-400 cursor-pointer hover:text-purple-400">{i?.title}</h2>

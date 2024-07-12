@@ -34,6 +34,7 @@ function GetListBlogPost() {
     }
     await axios.delete(`https://crud.b4a.io/classes/blog/${objectId}`, {headers:headers})
     toast?.success("Blog post deleted successfully", {position:"top-center"})
+    getBlogPost()
   }
   return (
     <div className="container mx-auto">

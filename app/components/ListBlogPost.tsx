@@ -19,7 +19,6 @@ function GetListBlogPost() {
      setIsLoading(!isLoading)
     }
     setBlogPost(blogPostList)
-    console.log(isLoading)
   }
   const goBack = () => {
     navigate("/")

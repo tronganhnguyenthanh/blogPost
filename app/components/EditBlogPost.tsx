@@ -70,7 +70,7 @@ function EditBlogPost(){
             <input 
               name="title" 
               type="text" 
-              className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6 cursor-pointer"
+              className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 p-2 sm:text-sm sm:leading-6 cursor-pointer"
               value={title}
               onChange={(e) => setTitle(e?.target?.value)}
             />
@@ -82,7 +82,7 @@ function EditBlogPost(){
           </div>
           <div className="mt-2">
             <textarea 
-              className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6 cursor-pointer"
+              className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 p-2 sm:text-sm sm:leading-6 cursor-pointer"
               rows={5}
               value={description}
               onChange={(e) => setDescription(e?.target?.value)}

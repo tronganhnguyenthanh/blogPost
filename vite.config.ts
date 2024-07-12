@@ -13,6 +13,7 @@ export default defineConfig({
         return defineRoutes((route) => {
           route("/", "components/CreateBlogPost.tsx", {index:true});
           route("/blog/list", "components/ListBlogPost.tsx");
+          route("/blog/edit/:objectId", "components/EditBlogPost.tsx")
         });
       },
     }),

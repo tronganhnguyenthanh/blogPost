@@ -1,14 +1,10 @@
 import axios from "axios"
-import {useEffect, useState} from "react"
+import {useState, useEffect} from "react"
 import {useNavigate} from "react-router-dom"
 import {toast, ToastContainer} from "react-toastify"
 import "react-toastify/dist/ReactToastify.css"
 import {loader} from "~/fetchBlogPost/fetchBlogPost"
-type Blog = {
-  objectId:string,
-  title:string,
-  description:string
-}
+import Blog from "~/types/Blog.type"
 function GetListBlogPost() {
   const [blogPost, setBlogPost] = useState<(Blog | null)[]>([])
   const navigate = useNavigate()
@@ -21,6 +17,9 @@ function GetListBlogPost() {
   }
   const goBack = () => {
     navigate("/")
+  }
+  const redirectToEditBlogPost = (objectId:any) => {
+    navigate(`/blog/edit/${objectId}`)
   }
   const handleDelete = async (objectId:any) => {
     let headers = {
@@ -45,6 +44,7 @@ function GetListBlogPost() {
                 <button
                   className="px-4 py-1 m-2 text-sm text-blue-600 font-semibold rounded-full border border-purple-200 hover:text-white hover:bg-purple-600 hover:border-transparent focus:outline-none focus:ring-2 focus:ring-purple-600 focus:ring-offset-2"
                   type="button"
+                  onClick={() => redirectToEditBlogPost(i?.objectId)}
                 >
                   Edit
                 </button>

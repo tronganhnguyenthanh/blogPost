@@ -32,7 +32,9 @@ export default function CreateBlogPost(){
       toast?.success("Blog post added successfully", {position:"top-center"})
       setTitle("")
       setDescription("")
-      navigate("/blog/list")
+      setTimeout(() => {
+       navigate("/blog/list")
+      },1000)
       return true
     }
   }
